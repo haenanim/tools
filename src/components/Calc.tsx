@@ -22,6 +22,39 @@ export default function Calc() {
         </div>
       );
     }
+    pad.push(
+      <div
+        id="C"
+        onClick={(e) => {
+          clickNumpad(e);
+        }}
+        key="C"
+      >
+        C
+      </div>
+    );
+    pad.push(
+      <div
+        id="0"
+        onClick={(e) => {
+          clickNumpad(e);
+        }}
+        key="0"
+      >
+        0
+      </div>
+    );
+    pad.push(
+      <div
+        id="E"
+        onClick={(e) => {
+          clickNumpad(e);
+        }}
+        key="E"
+      >
+        E
+      </div>
+    );
     return pad;
   }
   return (

@@ -2,10 +2,37 @@ import React, { SyntheticEvent, useState } from 'react';
 import './Calc.css';
 
 export default function Calc() {
-  const [inputNum, setInputNum] = useState<string>('');
+  const [inputNum, setInputNum] = useState<string>('0');
+  const [waitInput, setWaitInput] = useState<boolean>(true);
+  let numbers = 0;
 
   function clickNumpad(e: any) {
-    setInputNum(inputNum + e.target.id);
+    if (waitInput) {
+      setInputNum(e.target.id);
+      setWaitInput(false);
+    } else {
+      if (inputNum === '0') {
+        setInputNum(e.target.id);
+      } else {
+        setInputNum(inputNum + e.target.id);
+      }
+    }
+  }
+  function clickOperator(operator: string) {
+    setWaitInput(true);
+    alert('operator');
+    switch (operator) {
+      case '+':
+        numbers += Number(inputNum);
+        setInputNum(String(numbers));
+        break;
+      case '-':
+        break;
+      case '*':
+        break;
+      case '/':
+        break;
+    }
   }
   function makeNumpad() {
     const pad = [];
@@ -21,6 +48,45 @@ export default function Calc() {
           {i}
         </div>
       );
+      if (i === 3) {
+        pad.push(
+          <div
+            id="+"
+            onClick={(e) => {
+              clickOperator('+');
+            }}
+            key="+"
+          >
+            +
+          </div>
+        );
+      }
+      if (i === 6) {
+        pad.push(
+          <div
+            id="-"
+            onClick={(e) => {
+              clickNumpad(e);
+            }}
+            key="-"
+          >
+            -
+          </div>
+        );
+      }
+      if (i === 9) {
+        pad.push(
+          <div
+            id="*"
+            onClick={(e) => {
+              clickNumpad(e);
+            }}
+            key="*"
+          >
+            *
+          </div>
+        );
+      }
     }
     pad.push(
       <div
@@ -55,12 +121,28 @@ export default function Calc() {
         E
       </div>
     );
+    pad.push(
+      <div
+        id="/"
+        onClick={(e) => {
+          clickNumpad(e);
+        }}
+        key="/"
+      >
+        /
+      </div>
+    );
+
     return pad;
   }
   return (
     <div>
-      <div className="res-display"> {inputNum}</div>
-      <div className="num-pad">{makeNumpad()}</div>
+      <div>
+        <div className="res-display"> {inputNum}</div>
+        <div className="pad">
+          <div className="num-pad">{makeNumpad()}</div>
+        </div>
+      </div>
     </div>
   );
 }

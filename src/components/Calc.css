@@ -1,9 +1,18 @@
 .res-display {
+  background-color: beige;
+  box-sizing: border-box;
+  border: 1px solid gray;
+  width: 200px;
+  height: 50px;
+}
+.pad {
+  display: flex;
+  flex-wrap: wrap;
 }
 .num-pad {
   display: flex;
   flex-wrap: wrap;
-  width: 150px;
+  width: 200px;
 }
 .num-pad > div {
   background-color: beige;

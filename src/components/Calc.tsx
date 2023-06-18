@@ -1,10 +1,10 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import './Calc.css';
 
 export default function Calc() {
   const [inputNum, setInputNum] = useState<string>('0');
   const [waitInput, setWaitInput] = useState<boolean>(true);
-  let numbers = 0;
+  const [resNum, setResNum] = useState<number>(0);
 
   function clickNumpad(e: any) {
     if (waitInput) {
@@ -18,13 +18,18 @@ export default function Calc() {
       }
     }
   }
+  function updateDisplay(result: number) {
+    setInputNum(String(result));
+  }
   function clickOperator(operator: string) {
     setWaitInput(true);
-    alert('operator');
     switch (operator) {
       case '+':
-        numbers += Number(inputNum);
-        setInputNum(String(numbers));
+        setResNum((prev) => {
+          const result = prev + Number(inputNum);
+          updateDisplay(result);
+          return result;
+        });
         break;
       case '-':
         break;

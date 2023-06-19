@@ -42,12 +42,18 @@ export default function Calc() {
         }
         break;
       case '*':
+        handleEqual();
         setSelectOperator('*');
         if (!readyNewInput) {
+          setReadyNewInput(true);
         }
         break;
       case '/':
+        handleEqual();
         setSelectOperator('/');
+        if (!readyNewInput) {
+          setReadyNewInput(true);
+        }
         break;
       default:
         break;

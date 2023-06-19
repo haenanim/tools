@@ -22,42 +22,16 @@ export default function Calc() {
   }
 
   function clickOperator(operator: any) {
-    switch (selectOperator) {
-      case '+':
-        handleEqual();
-        setSelectOperator('+');
-        if (inputNum !== '0' && inputNum && inputNum !== '-') {
-          setReadyNewInput(true);
-        }
-
-        break;
-      case '-':
-        handleEqual();
-        setSelectOperator('-');
-        if (readyNewInput) {
-          setReadyNewInput(false);
-          setInputNum('-');
-        } else if (!readyNewInput) {
-          setReadyNewInput(true);
-        }
-        break;
-      case '*':
-        handleEqual();
-        setSelectOperator('*');
-        if (!readyNewInput) {
-          setReadyNewInput(true);
-        }
-        break;
-      case '/':
-        handleEqual();
-        setSelectOperator('/');
-        if (!readyNewInput) {
-          setReadyNewInput(true);
-        }
-        break;
-      default:
-        break;
+    if (operator === '-' && inputNum === '0') {
+      setInputNum('-');
+      setReadyNewInput(false);
+      setSelectOperator('+');
+      return;
     }
+    if (!readyNewInput) {
+      setReadyNewInput(true);
+    }
+    handleEqual();
     setSelectOperator(operator);
   }
 

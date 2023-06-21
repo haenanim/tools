@@ -108,7 +108,7 @@ export default function Calc() {
 
   return (
     <div>
-      <div>
+      <div className="inner">
         <div className="res-display">{inputNum}</div>
         <div className="pad">
           <div className="num-pad">{makeNumpad()}</div>

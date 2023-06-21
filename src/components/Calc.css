@@ -1,3 +1,7 @@
+.inner {
+  display: grid;
+  place-items: center;
+}
 .res-display {
   background-color: beige;
   box-sizing: border-box;
